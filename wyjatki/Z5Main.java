@@ -1,4 +1,6 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Z5Main {
     public static double valueFromString(String inputStr) {
@@ -21,11 +23,11 @@ public class Z5Main {
         return input;
     }
     
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         
         System.out.print("Enter a Number: ");
-        String inputStr = sc.next();
+        String inputStr = in.readLine();
         
         double input = valueFromString(inputStr);
         
