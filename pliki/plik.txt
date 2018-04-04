@@ -1,0 +1,4 @@
+to 1 wiersz
+to 2
+a to 3
+ostatni
