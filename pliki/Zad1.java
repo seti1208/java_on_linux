@@ -1,10 +1,4 @@
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
+import java.io.*;
 
 public class Zad1 {
     public static void main(String[] args) throws IOException {
@@ -15,18 +9,19 @@ public class Zad1 {
      //   String str = "Ala ma kota.";
 
         try {
-            PrintWriter fos = new PrintWriter("plik.txt"); //Otwieranie pliku
-	    fos.print(str);
+            BufferedWriter fos = new BufferedWriter(new FileWriter("plik.txt"));
+	    fos.write(str);
 	    fos.close();
 
         } catch (IOException ex) {
             System.out.println("Błąd operacji na pliku: " + ex);
         } finally {
             try {
-	   Scanner output = new Scanner(new File("plik.txt"));
-	   System.out.println(output.nextLine());
-	//    BufferedReader output = new BufferedReader(new File("plik.txt"));
-	 //   System.out.println(output.readLine());
+	   //Scanner output = new Scanner(new File("plik.txt"));
+	   //System.out.println(output.nextLine());
+
+	   BufferedReader output = new BufferedReader(new FileReader("plik.txt"));
+	   System.out.println(output.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             }
