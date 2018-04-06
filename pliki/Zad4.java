@@ -2,8 +2,15 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.File;
 
 public class Zad4 {
+
+        public static boolean IsFileExists(String filePath) {
+        File f = new File(filePath);
+        return f.exists() && f.isFile();
+       }
+
     public static void main(String[] args) throws IOException {
         String filePath = "/etc/fstab";
         
@@ -17,6 +24,13 @@ public class Zad4 {
         
         boolean isLineSep = true;
         boolean isWordChar = false;
+
+        if (IsFileExists(filePath)) {
+             System.out.println("Plik " + filePath + " istnieje");
+        } else {
+        System.out.println("Nie ma pliku o nazwie " + filePath);
+	return;
+	}
         
         try (
                 FileInputStream fis = new FileInputStream(filePath);
