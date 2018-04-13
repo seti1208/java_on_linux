@@ -1,74 +1,107 @@
 import java.util.Optional;
-public class Human {
-    public enum ColorHair {
-       BROWN(true), 
-       CHOCOLATE(true),
-       GRAY(false), 
-       ORANGE(false),
-       BLACK(true);
+import java.util.stream.Stream;
 
-	     
-       boolean ladny;
-		     
-       private ColorHair(boolean isFine) {
-               ladny = isFine;
+public class Human {
+    public enum ColorEye {
+        GREEN,
+        BLUE,
+        GRAY;
+        
+        @Override
+        public String toString() {
+	     return super.toString().toLowerCase();
+        }
     }
     
-       @Override
-       public String toString() {
+    public enum ColorHair {
+        BROWN(true), 
+        CHOCOLATE(true),
+        GRAY(false), 
+        ORANGE(false),
+        BLACK(true);
+
+	     
+        boolean ladny;
+		     
+        private ColorHair(boolean isFine) {
+               ladny = isFine;
+        }
+    
+        @Override
+        public String toString() {
 	     return super.toString().toLowerCase();
         }
     }
     private String name;
     private Integer age;
+    private ColorEye colorEye;
+    private ColorHair colorHair;
 
-        public Optional<String> getName() {
-	      return Optional.ofNullable(name);
-        }
+    public Optional<String> getName() {
+          return Optional.ofNullable(name);
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-	
-        public Optional<Integer> getAge() {
-            return Optional.ofNullable(age);
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setAge(Integer age) {
-	    this.age = age;
-	}
+    public Optional<Integer> getAge() {
+        return Optional.ofNullable(age);
+    }
 
-	    @Override
-        public String toString() {
-            return "Person{" +
-                   "name='" + Optional.ofNullable(name).orElse("") + '\'' +
-                   ", age=" + Optional.ofNullable(age).orElse(0) +
-                   '}';
-	}
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+    
+    public Optional<ColorEye> getColorEye() {
+          return Optional.ofNullable(colorEye);
+    }
+
+    public void setColorEye(ColorEye colorEye) {
+        this.colorEye = colorEye;
+    }
+    
+    public Optional<ColorHair> getColorHair() {
+          return Optional.ofNullable(colorHair);
+    }
+
+    public void setColorHair(ColorHair colorHair) {
+        this.colorHair = colorHair;
+    }
+    
+    @Override
+    public String toString() {
+        return "Person{" +
+               "name='" + Optional.ofNullable(name).orElse("") + '\'' +
+               ", age=" + Optional.ofNullable(age).orElse(0) +
+               '}';
+    }
 
     public static void main(String[] args) {
-        // 1
         Human person = new Human();
+	//ustawiamy vartośći
         person.setName("John");
+        person.setAge(22);
+        
+        person.setColorHair(ColorHair.BROWN);
+        person.setColorEye(ColorEye.GREEN);
 
-        Optional.ofNullable(person.getName()).ifPresent(System.out::println);
+        //Optional.ofNullable(person.getName()).ifPresent(System.out::println);
+        //person.getName().ifPresent(System.out::println);
         System.out.println(Optional.ofNullable(person.getName()).map(value -> "imie: "+value).orElse("brak Imienia!"));
 
-        person.getName().ifPresent(System.out::println);
-        person.setAge(22);
         System.out.println(person.getAge()
                 .filter(age -> age >= 18)
                 .map(age -> "wiek: " + age + ". Osoba pełnoletnia")
                 .orElse("Osoba niepełnoletnia"));
 
-        for(ColorHair kolor: ColorHair.values()) {
-            System.out.println(isFine(kolor));
-	}
+	System.out.println("Oczy:" + person.getColorEye());
+	System.out.println("Włosy:" + person.getColorHair());
+        //Stream.of(ColorHair.values()).forEach(System.out::println);
     }
-        public static String isFine(ColorHair kolor) {
-		        String isFine = (kolor.ladny) ? "ladny" : "brzydki";
-			return "Kolor "+kolor.toString()+" jest "+isFine;
-	}
+    
+    public static String isFine(ColorHair kolor) {
+                    String isFine = (kolor.ladny) ? "ladny" : "brzydki";
+                    return "Kolor "+kolor.toString()+" jest "+isFine;
+    }
 }
-
-  
