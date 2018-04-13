@@ -5,6 +5,7 @@ public class Human {
     public enum ColorEye {
         GREEN,
         BLUE,
+	BROWN,
         GRAY;
         
         @Override
@@ -80,23 +81,23 @@ public class Human {
     public static void main(String[] args) {
         Human person = new Human();
 	//ustawiamy vartośći
-        person.setName("John");
+       // person.setName("Grzegorz");
         person.setAge(22);
         
-        person.setColorHair(ColorHair.BROWN);
+        //person.setColorHair(ColorHair.BROWN);
         person.setColorEye(ColorEye.GREEN);
 
         //Optional.ofNullable(person.getName()).ifPresent(System.out::println);
         //person.getName().ifPresent(System.out::println);
-        System.out.println(Optional.ofNullable(person.getName()).map(value -> "imie: "+value).orElse("brak Imienia!"));
+        System.out.println(person.getName().map(value -> "imie: "+value).orElse("brak Imienia!"));
 
         System.out.println(person.getAge()
                 .filter(age -> age >= 18)
                 .map(age -> "wiek: " + age + ". Osoba pełnoletnia")
                 .orElse("Osoba niepełnoletnia"));
 
-	System.out.println("Oczy:" + person.getColorEye());
-	System.out.println("Włosy:" + person.getColorHair());
+	System.out.println(person.getColorEye().map(value -> "Oczy:" +value).orElse("brak Oczy!"));
+	System.out.println(person.getColorHair().map(value -> "Włosy:" +value).orElse("brak Włosów!"));
         //Stream.of(ColorHair.values()).forEach(System.out::println);
     }
     
