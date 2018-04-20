@@ -1,6 +1,5 @@
-public class AiFuncs {
+  public class AiFuncs {
     // factory function for making instances of Random.
-    // it can be overridden for debug/test purposes
     protected Random makeRandom() {
         return new Random();
     }
@@ -202,6 +201,7 @@ public class AiFuncs {
             }
             
             // the first pass for "Just Good" case
+	    hitPointer = rnd.nextInt(hitCount);
             
             for (int x = 0; x < sideSize; ++x) {
                 for (int y = 0; y < sideSize; ++y) {
@@ -263,3 +263,4 @@ public class AiFuncs {
         throw new IllegalStateException();
     }
 }
+ 
